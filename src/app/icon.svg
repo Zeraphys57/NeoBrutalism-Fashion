@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Solid Offset Shadow -->
+  <rect x="96" y="96" width="352" height="352" fill="#0A0A0A" />
+  
+  <!-- Acid Yellow Base with Thick Border -->
+  <rect x="64" y="64" width="352" height="352" fill="#FFE600" stroke="#0A0A0A" stroke-width="32" />
+  
+  <!-- Brutalist "B" -->
+  <path d="M 160 160 H 288 C 320 160 336 176 336 208 C 336 232 320 248 304 256 C 328 264 352 280 352 312 C 352 352 320 368 288 368 H 160 V 160 Z M 208 200 V 240 H 272 C 280 240 288 232 288 220 C 288 208 280 200 272 200 H 208 Z M 208 280 V 328 H 280 C 292 328 304 316 304 304 C 304 292 292 280 280 280 H 208 Z" fill="#0A0A0A" />
+</svg>
