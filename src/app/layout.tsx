@@ -7,6 +7,12 @@ import CartDrawer from "@/components/ui/CartDrawer";
 import PageTransition from "@/components/layout/PageTransition";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000")
+  ),
   title: "BRUTAL COUTURE — Wear Your Rage",
   description:
     "Neo-brutalist fashion out of Australia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
@@ -15,6 +21,12 @@ export const metadata: Metadata = {
     description:
       "Neo-brutalist fashion out of Australia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BRUTAL COUTURE — Wear Your Rage",
+    description:
+      "Neo-brutalist fashion out of Australia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
   },
 };
 
