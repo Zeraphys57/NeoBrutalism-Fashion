@@ -61,7 +61,7 @@ export default function Loader({ onComplete }: LoaderProps) {
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-[100] flex flex-col justify-between overflow-hidden bg-ink"
+      className="fixed inset-0 z-100 flex flex-col justify-between overflow-hidden bg-ink"
     >
       <div className="p-6 md:p-10">
         <span className="font-display text-3xl leading-none tracking-wide text-acid md:text-4xl">
@@ -85,7 +85,7 @@ export default function Loader({ onComplete }: LoaderProps) {
         >
           LOADING SS25 COLLECTION
         </p>
-        <div className="h-[3px] w-full bg-mid">
+        <div className="h-0.75 w-full bg-mid">
           <div ref={barRef} className="h-full w-full bg-acid" />
         </div>
       </div>
