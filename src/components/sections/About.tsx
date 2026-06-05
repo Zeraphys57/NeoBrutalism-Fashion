@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BRAND_STATS, MANIFESTO_LINES, PRESS_MENTIONS } from "@/lib/data";
@@ -106,13 +107,13 @@ export default function About() {
             </div>
           ))}
 
-          <a
-            href="#"
+          <Link
+            href="/lookbook"
             data-cursor-hover
             className="mt-10 inline-block b-border bg-acid px-7 py-4 font-mono text-xs font-bold uppercase tracking-widest text-ink shadow-[6px_6px_0_0_#0A0A0A] transition-all duration-200 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_#0A0A0A]"
           >
             READ OUR STORY →
-          </a>
+          </Link>
         </div>
 
         {/* Right — Stats & Press */}

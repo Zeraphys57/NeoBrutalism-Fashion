@@ -124,15 +124,15 @@ export default function Navbar() {
           scrolled ? "border-acid bg-ink" : "border-transparent bg-transparent"
         )}
       >
-        <a
-          href="#"
+        <Link
+          href="/"
           className={cn(
             "font-display text-2xl leading-none tracking-wide transition-colors duration-300 md:text-3xl",
             logoColor
           )}
         >
           BRUTAL COUTURE
-        </a>
+        </Link>
 
         {/* Desktop links + CTA */}
         <div className="hidden items-center gap-8 md:flex">

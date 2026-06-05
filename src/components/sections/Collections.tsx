@@ -267,13 +267,13 @@ export default function Collections() {
             </h2>
           </div>
 
-          <a
-            href="#"
+          <Link
+            href="/lookbook"
             data-cursor-hover
             className="hidden shrink-0 b-border bg-chalk px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-ink shadow-[6px_6px_0_0_#FFE600] transition-all duration-200 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_#FFE600] md:inline-block"
           >
             VIEW ALL →
-          </a>
+          </Link>
         </div>
 
         {/* Drag hint */}
