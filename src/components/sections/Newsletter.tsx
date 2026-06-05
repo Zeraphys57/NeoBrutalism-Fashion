@@ -9,11 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 // Pragmatic email check — non-empty local part, @, domain, dot, TLD.
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Optional: set NEXT_PUBLIC_FORMSPREE_ID to actually collect signups. Without it
+// the form still validates and shows the success state (demo mode).
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
 export default function Newsletter() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
 
   useEffect(() => {
     const el = contentRef.current;
@@ -30,13 +35,35 @@ export default function Newsletter() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!EMAIL_REGEX.test(email.trim())) {
       setError("Enter a valid email address.");
       return;
     }
     setError("");
+
+    // No backend configured → demo success. With a Formspree ID, actually POST.
+    if (FORMSPREE_ID) {
+      setPending(true);
+      try {
+        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ email: email.trim() }),
+        });
+        if (!res.ok) throw new Error("Request failed");
+      } catch {
+        setError("Couldn't subscribe right now. Try again.");
+        setPending(false);
+        return;
+      }
+      setPending(false);
+    }
+
     setSubmitted(true);
   };
 
@@ -81,9 +108,10 @@ export default function Newsletter() {
               <button
                 type="submit"
                 data-cursor-hover
-                className="shrink-0 border-0 bg-ink px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-acid transition-colors duration-200 hover:bg-mid md:px-8"
+                disabled={pending}
+                className="shrink-0 border-0 bg-ink px-6 py-4 font-mono text-xs font-bold uppercase tracking-widest text-acid transition-colors duration-200 hover:bg-mid disabled:opacity-60 md:px-8"
               >
-                NOTIFY ME →
+                {pending ? "SENDING…" : "NOTIFY ME →"}
               </button>
             </form>
             {error && (
