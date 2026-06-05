@@ -305,6 +305,12 @@ export const LOOKBOOK_ITEMS: LookbookItem[] = [
   { id: "lb-23", title: "S4 06", collection: "silent-dystopia", variant: "light", imageSrc: "/images/couture season 4/s4_dual_models_1780647417458.png", size: "medium" },
   { id: "lb-24", title: "S4 07", collection: "silent-dystopia", variant: "dark", imageSrc: "/images/couture season 4/s4_texture_detail_1780647440592.png", size: "medium" },
   { id: "lb-25", title: "S4 08", collection: "silent-dystopia", variant: "pattern", imageSrc: "/images/couture season 4/s4_experimental_perspective_1780647452906.png", size: "small" },
+  // Apparel & Bags
+  { id: "lb-26", title: "APP 01", collection: "apparel", variant: "dark", imageSrc: "/images/apparel/vogue_bag_model_1780674512452.png", size: "large" },
+  { id: "lb-27", title: "APP 02", collection: "apparel", variant: "yellow", imageSrc: "/images/apparel/vogue_trench_male_1780674525323.png", size: "medium" },
+  { id: "lb-28", title: "APP 03", collection: "apparel", variant: "light", imageSrc: "/images/apparel/vogue_backpack_detail_1780674538448.png", size: "small" },
+  { id: "lb-29", title: "APP 04", collection: "apparel", variant: "pattern", imageSrc: "/images/apparel/vogue_duo_apparel_1780674551415.png", size: "medium" },
+  { id: "lb-30", title: "APP 05", collection: "apparel", variant: "dark", imageSrc: "/images/apparel/vogue_tote_lowangle_1780674564818.png", size: "large" },
 ];
 
 // Community / UGC wall — fake IG handles across Indonesian cities.

@@ -20,6 +20,7 @@ const OUTLINED_CHALK = {
 
 const FILTERS = [
   { label: "ALL", value: "all" },
+  { label: "APPAREL", value: "apparel" },
   { label: "SILENT DYSTOPIA", value: "silent-dystopia" },
   { label: "VOID SERIES", value: "void-series" },
   { label: "RAW SIGNAL", value: "raw-signal" },
