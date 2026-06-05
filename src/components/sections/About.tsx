@@ -13,7 +13,7 @@ const INK = "#0A0A0A";
 
 // Editorial voice for the bare numbers — keyed by the stat label in the data.
 const STAT_SUBTITLES: Record<string, string> = {
-  FOUNDED: "Born in Jakarta, raised by streets.",
+  FOUNDED: "Born in Melbourne, raised by streets.",
   DROPS: "Every season, every year, no repeats.",
   COMMUNITY: "Wearers who actually give a damn.",
 };

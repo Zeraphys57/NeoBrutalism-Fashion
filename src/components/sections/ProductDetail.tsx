@@ -47,8 +47,8 @@ const SIZE_CHART = [
 
 const TRUST = [
   { icon: "📦", text: "FREE SHIPPING for orders over $500 AUD" },
-  { icon: "↩", text: "RETURN 7 hari — no questions asked" },
-  { icon: "🔒", text: "SECURE CHECKOUT via Midtrans" },
+  { icon: "↩", text: "RETURN within 7 days — no questions asked" },
+  { icon: "🔒", text: "SECURE CHECKOUT via Stripe" },
 ];
 
 export default function ProductDetail({ product }: { product: Product }) {
