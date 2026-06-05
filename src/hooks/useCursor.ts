@@ -23,9 +23,14 @@ export function useCursor() {
     const textEl = textRef.current;
     if (!cursor) return;
 
-    // Only run on real pointer devices. Touch / coarse-pointer devices have no
-    // use for the square cursor — skip the rAF loop and listeners entirely.
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    // Only run on real pointer devices wide enough to be "desktop". Touch /
+    // coarse-pointer devices and narrow (mobile-width) viewports have no use for
+    // the square cursor — skip the rAF loop and listeners entirely. Matches the
+    // CSS gate in globals.css so the element is display:none in the same cases.
+    if (
+      !window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)")
+        .matches
+    ) {
       return;
     }
 

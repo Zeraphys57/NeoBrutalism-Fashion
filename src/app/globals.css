@@ -47,8 +47,10 @@ body {
 }
 
 /* Hide the OS cursor only where the custom square cursor actually runs, i.e.
-   real pointer devices. Touch / coarse-pointer devices keep native behaviour. */
-@media (hover: hover) and (pointer: fine) {
+   real pointer devices on a wide-enough screen. Touch / coarse-pointer devices
+   AND narrow viewports keep the native cursor — otherwise shrinking the window
+   below the mobile breakpoint would leave no visible cursor at all. */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
   body {
     cursor: none; /* replaced by the custom .cursor element in Phase 3 */
   }
@@ -239,9 +241,11 @@ body {
   transform: scale(0.8);
 }
 
-/* The custom cursor is meaningless on touch / coarse-pointer devices — hide it
-   so a stray square never lingers on screen. The hook also skips its rAF loop. */
-@media (hover: none), (pointer: coarse) {
+/* The custom cursor is meaningless on touch / coarse-pointer devices, and on
+   any narrow (mobile-width) viewport — hide it so a stray square never lingers
+   on screen. The hook also skips its rAF loop in the same conditions.
+   Mirror of the (min-width: 768px) gate above; 767.98px avoids a sub-pixel gap. */
+@media (hover: none), (pointer: coarse), (max-width: 767.98px) {
   .cursor,
   .cursor-text {
     display: none;
