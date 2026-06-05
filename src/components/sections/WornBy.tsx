@@ -27,6 +27,7 @@ const FOOTER_SCHEMES: Record<BrutalImageVariant, FooterScheme> = {
   yellow: { bg: ACID, handle: INK, loc: "rgba(10, 10, 10, 0.6)" },
   light: { bg: CHALK, handle: INK, loc: MUTED },
   pattern: { bg: MID, handle: CHALK, loc: MUTED },
+  purple: { bg: "#8A2BE2", handle: CHALK, loc: MUTED },
 };
 
 const OUTLINED_TEXT = {

@@ -26,6 +26,7 @@ const SCHEMES: Record<ColorScheme, Scheme> = {
   dark: { bg: INK, text: CHALK, accent: ACID, shadow: ACID, tagBg: ACID, tagText: INK },
   yellow: { bg: ACID, text: INK, accent: INK, shadow: INK, tagBg: INK, tagText: ACID },
   light: { bg: CHALK, text: INK, accent: INK, shadow: ACID, tagBg: INK, tagText: ACID },
+  purple: { bg: "#8A2BE2", text: CHALK, accent: ACID, shadow: INK, tagBg: ACID, tagText: INK },
 };
 
 interface ProductCardProps {

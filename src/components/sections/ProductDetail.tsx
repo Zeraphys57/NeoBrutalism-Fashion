@@ -32,6 +32,7 @@ const SECONDARY_VARIANT: Record<ColorScheme, BrutalImageVariant> = {
   dark: "pattern",
   yellow: "dark",
   light: "yellow",
+  purple: "yellow", // acid contrasts hard against the purple primary
 };
 
 const TRUST = [
