@@ -12,6 +12,11 @@ export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Honour reduced-motion: skip the smooth-scroll hijack entirely and let the
+    // browser scroll natively. Lenis' eased/lagged scrolling is exactly the kind
+    // of motion these users opt out of.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const lenis = new Lenis({
       duration: 1.4,
       // power2-style ease-out (expo): 1.001 - 2^(-10t)
