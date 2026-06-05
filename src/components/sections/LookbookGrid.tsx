@@ -94,7 +94,7 @@ export default function LookbookGrid() {
             style={{ fontSize: "clamp(36px, 7vw, 64px)", ...OUTLINED_CHALK }}
             aria-hidden
           >
-            12 LOOKS
+            {LOOKBOOK_ITEMS.length} LOOKS
           </span>
         </div>
       </header>

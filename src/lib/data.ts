@@ -276,18 +276,35 @@ export const PRESS_MENTIONS: string[] = [
 // Editorial lookbook grid. `size` drives the masonry footprint; `variant`
 // picks the BrutalImage placeholder until `imageSrc` is filled in.
 export const LOOKBOOK_ITEMS: LookbookItem[] = [
-  { id: "lb-01", title: "S4 01", collection: "silent-dystopia", variant: "dark", imageSrc: "/images/couture season 4/s4_editorial_full_1780647341081.png", size: "large" },
-  { id: "lb-02", title: "S4 02", collection: "silent-dystopia", variant: "yellow", imageSrc: "/images/couture season 4/s4_close_portrait_1780647354246.png", size: "medium" },
-  { id: "lb-03", title: "S4 03", collection: "silent-dystopia", variant: "light", imageSrc: "/images/couture season 4/s4_action_motion_1780647366405.png", size: "small" },
-  { id: "lb-04", title: "S4 04", collection: "silent-dystopia", variant: "pattern", imageSrc: "/images/couture season 4/s4_garment_focus_1780647387806.png", size: "small" },
-  { id: "lb-05", title: "S4 05", collection: "silent-dystopia", variant: "yellow", imageSrc: "/images/couture season 4/s4_wide_landscape_1780647403276.png", size: "large" },
-  { id: "lb-06", title: "S4 06", collection: "silent-dystopia", variant: "light", imageSrc: "/images/couture season 4/s4_dual_models_1780647417458.png", size: "medium" },
-  { id: "lb-07", title: "S4 07", collection: "silent-dystopia", variant: "dark", imageSrc: "/images/couture season 4/s4_texture_detail_1780647440592.png", size: "medium" },
-  { id: "lb-08", title: "S4 08", collection: "silent-dystopia", variant: "pattern", imageSrc: "/images/couture season 4/s4_experimental_perspective_1780647452906.png", size: "small" },
-  { id: "lb-09", title: "S4 09", collection: "silent-dystopia", variant: "light", imageSrc: "/images/couture season 4/s4_editorial_full_1780647341081.png", size: "large" },
-  { id: "lb-10", title: "S4 10", collection: "silent-dystopia", variant: "dark", imageSrc: "/images/couture season 4/s4_action_motion_1780647366405.png", size: "small" },
-  { id: "lb-11", title: "S4 11", collection: "silent-dystopia", variant: "yellow", imageSrc: "/images/couture season 4/s4_close_portrait_1780647354246.png", size: "medium" },
-  { id: "lb-12", title: "S4 12", collection: "silent-dystopia", variant: "pattern", imageSrc: "/images/couture season 4/s4_wide_landscape_1780647403276.png", size: "medium" },
+  // Season 1: Void Series (6 items)
+  { id: "lb-01", title: "S1 01", collection: "void-series", variant: "dark", imageSrc: "/images/void_series.png", size: "large" },
+  { id: "lb-02", title: "S1 02", collection: "void-series", variant: "pattern", imageSrc: "/images/lookbook_1.png", size: "medium" },
+  { id: "lb-03", title: "S1 03", collection: "void-series", variant: "dark", imageSrc: "/images/lookbook_4.png", size: "small" },
+  { id: "lb-04", title: "S1 04", collection: "void-series", variant: "pattern", imageSrc: "/images/backup/backup_1.png", size: "large" },
+  { id: "lb-05", title: "S1 05", collection: "void-series", variant: "dark", imageSrc: "/images/backup/backup_2.png", size: "medium" },
+  { id: "lb-06", title: "S1 06", collection: "void-series", variant: "dark", imageSrc: "/images/worn_by_1.png", size: "small" },
+  // Season 2: Raw Signal (5 items)
+  { id: "lb-07", title: "S2 01", collection: "raw-signal", variant: "yellow", imageSrc: "/images/raw_signal.png", size: "large" },
+  { id: "lb-08", title: "S2 02", collection: "raw-signal", variant: "pattern", imageSrc: "/images/lookbook_2.png", size: "medium" },
+  { id: "lb-09", title: "S2 03", collection: "raw-signal", variant: "yellow", imageSrc: "/images/feat_product.png", size: "small" },
+  { id: "lb-10", title: "S2 04", collection: "raw-signal", variant: "pattern", imageSrc: "/images/backup/backup_3.png", size: "large" },
+  { id: "lb-11", title: "S2 05", collection: "raw-signal", variant: "yellow", imageSrc: "/images/worn_by_2.png", size: "medium" },
+  // Season 3: Static Noise (6 items)
+  { id: "lb-12", title: "S3 01", collection: "static-noise", variant: "light", imageSrc: "/images/static_noise.png", size: "large" },
+  { id: "lb-13", title: "S3 02", collection: "static-noise", variant: "pattern", imageSrc: "/images/lookbook_3.png", size: "small" },
+  { id: "lb-14", title: "S3 03", collection: "static-noise", variant: "light", imageSrc: "/images/hero_banner.png", size: "medium" },
+  { id: "lb-15", title: "S3 04", collection: "static-noise", variant: "pattern", imageSrc: "/images/backup/backup_4.png", size: "large" },
+  { id: "lb-16", title: "S3 05", collection: "static-noise", variant: "light", imageSrc: "/images/backup/backup_5.png", size: "medium" },
+  { id: "lb-17", title: "S3 06", collection: "static-noise", variant: "pattern", imageSrc: "/images/worn_by_3.png", size: "small" },
+  // Season 4: Silent Dystopia (8 items)
+  { id: "lb-18", title: "S4 01", collection: "silent-dystopia", variant: "dark", imageSrc: "/images/couture season 4/s4_editorial_full_1780647341081.png", size: "large" },
+  { id: "lb-19", title: "S4 02", collection: "silent-dystopia", variant: "yellow", imageSrc: "/images/couture season 4/s4_close_portrait_1780647354246.png", size: "medium" },
+  { id: "lb-20", title: "S4 03", collection: "silent-dystopia", variant: "light", imageSrc: "/images/couture season 4/s4_action_motion_1780647366405.png", size: "small" },
+  { id: "lb-21", title: "S4 04", collection: "silent-dystopia", variant: "pattern", imageSrc: "/images/couture season 4/s4_garment_focus_1780647387806.png", size: "small" },
+  { id: "lb-22", title: "S4 05", collection: "silent-dystopia", variant: "yellow", imageSrc: "/images/couture season 4/s4_wide_landscape_1780647403276.png", size: "large" },
+  { id: "lb-23", title: "S4 06", collection: "silent-dystopia", variant: "light", imageSrc: "/images/couture season 4/s4_dual_models_1780647417458.png", size: "medium" },
+  { id: "lb-24", title: "S4 07", collection: "silent-dystopia", variant: "dark", imageSrc: "/images/couture season 4/s4_texture_detail_1780647440592.png", size: "medium" },
+  { id: "lb-25", title: "S4 08", collection: "silent-dystopia", variant: "pattern", imageSrc: "/images/couture season 4/s4_experimental_perspective_1780647452906.png", size: "small" },
 ];
 
 // Community / UGC wall — fake IG handles across Indonesian cities.
