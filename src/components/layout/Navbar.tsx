@@ -205,15 +205,48 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Hamburger */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] md:hidden"
-        >
+        {/* Mobile controls — cart + hamburger */}
+        <div className="flex items-center gap-3 md:hidden">
+          {/* Cart (mobile) — desktop has its own BAG button in the links row. */}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              openCart();
+            }}
+            aria-label={`Open cart${totalItems > 0 ? ` (${totalItems} items)` : ""}`}
+            className={cn(
+              "relative flex h-10 w-10 items-center justify-center border-[3px] border-current font-display text-[11px] leading-none tracking-wide transition-colors duration-300",
+              logoColor
+            )}
+          >
+            BAG
+            {totalItems > 0 && (
+              <span
+                className="absolute flex items-center justify-center rounded-full bg-acid font-display leading-none text-ink"
+                style={{
+                  top: -8,
+                  right: -8,
+                  width: 18,
+                  height: 18,
+                  fontSize: 12,
+                  border: "2px solid #0A0A0A",
+                }}
+              >
+                {totalItems}
+              </span>
+            )}
+          </button>
+
+          {/* Hamburger */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="flex h-10 w-10 flex-col items-center justify-center gap-[6px]"
+          >
           <span
             className={cn("block h-[2px] w-6 origin-center", lineColor)}
             style={{
@@ -237,7 +270,8 @@ export default function Navbar() {
               transform: menuOpen ? "translateY(-8px) rotate(-45deg)" : "none",
             }}
           />
-        </button>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile full-screen menu */}

@@ -20,12 +20,14 @@ const OUTLINED_CHALK = {
 
 const FILTERS = [
   { label: "ALL", value: "all" },
+  { label: "SILENT DYSTOPIA", value: "silent-dystopia" },
   { label: "VOID SERIES", value: "void-series" },
   { label: "RAW SIGNAL", value: "raw-signal" },
   { label: "STATIC NOISE", value: "static-noise" },
 ];
 
 const COLLECTION_NAMES: Record<string, string> = {
+  "silent-dystopia": "SILENT DYSTOPIA",
   "void-series": "VOID SERIES",
   "raw-signal": "RAW SIGNAL",
   "static-noise": "STATIC NOISE",

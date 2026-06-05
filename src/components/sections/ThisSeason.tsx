@@ -8,7 +8,7 @@ import type { BrutalImageVariant } from "@/types";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MINI_INFO = ["SS25", "12 STYLES", "LIMITED RUN"];
+const MINI_INFO = ["SEASON 4", "SILENT DYSTOPIA", "LIMITED RUN"];
 
 function SeasonCard({
   name,
@@ -95,25 +95,35 @@ export default function ThisSeason() {
         {/* Left — two stacked cards */}
         <div className="flex flex-col gap-8">
           <SeasonCard
-            name="MIDNIGHT PROTOCOL"
-            collection="VOID SERIES — SS25"
+            name="THE MONOLITHIC PRESENCE"
+            collection="SILENT DYSTOPIA — S4"
             variant="dark"
             aspectRatio="3/4"
+            imageSrc="/images/couture season 4/s4_editorial_full_1780647341081.png"
           />
           <SeasonCard
-            name="STATIC BURN"
-            collection="STATIC NOISE — SS25"
+            name="STRUCTURAL ARMOR"
+            collection="SILENT DYSTOPIA — S4"
             variant="pattern"
             aspectRatio="3/4"
+            imageSrc="/images/couture season 4/s4_garment_focus_1780647387806.png"
           />
         </div>
-        {/* Right — one taller card */}
-        <div>
+        {/* Right — two stacked cards */}
+        <div className="flex flex-col gap-8">
           <SeasonCard
-            name="HIGH VOLTAGE"
-            collection="RAW SIGNAL — SS25"
+            name="THE CRIMSON ANOMALY"
+            collection="SILENT DYSTOPIA — S4"
             variant="yellow"
             aspectRatio="2/3"
+            imageSrc="/images/couture season 4/s4_wide_landscape_1780647403276.png"
+          />
+          <SeasonCard
+            name="KINETIC WASTELAND"
+            collection="SILENT DYSTOPIA — S4"
+            variant="dark"
+            aspectRatio="3/4"
+            imageSrc="/images/couture season 4/s4_action_motion_1780647366405.png"
           />
         </div>
       </div>

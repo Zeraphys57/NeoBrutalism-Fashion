@@ -1,13 +1,13 @@
 // Core domain types for Brutal Couture.
 
-export type CollectionTag = "NEW" | "SOLD OUT" | "LIMITED" | "ARCHIVE";
+export type CollectionTag = "NEW" | "SOLD OUT" | "LIMITED" | "ARCHIVE" | "SEASON 2" | "SEASON 4";
 
-export type ColorScheme = "dark" | "yellow" | "light";
+export type ColorScheme = "dark" | "yellow" | "light" | "purple";
 
 export type ProductSize = "XS" | "S" | "M" | "L" | "XL" | "XXL";
 
 // Visual treatments for the BrutalImage placeholder system.
-export type BrutalImageVariant = "dark" | "yellow" | "light" | "pattern";
+export type BrutalImageVariant = "dark" | "yellow" | "light" | "pattern" | "purple";
 
 // Masonry footprint for lookbook tiles.
 export type LookbookSize = "small" | "medium" | "large";
@@ -40,6 +40,16 @@ export interface Product {
   sizes: ProductSize[];
   ref: string;
   imageSrc?: string;
+  /** URL-friendly id used by the /products/[slug] detail route. */
+  slug: string;
+  /** Slug of the parent collection (see COLLECTIONS). */
+  collectionSlug: string;
+  /** Drives the BrutalImage placeholder + accent treatment. */
+  colorScheme: ColorScheme;
+  /** Slugs of 2–3 related products surfaced on the detail page. */
+  relatedSlugs: string[];
+  /** Flags a fresh drop — toggles the "NEW ARRIVAL" badge. */
+  isNew: boolean;
 }
 
 export interface LookbookItem {

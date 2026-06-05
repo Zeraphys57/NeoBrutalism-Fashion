@@ -57,7 +57,7 @@ export default function Footer() {
             style={{ color: "var(--muted)" }}
           >
             <p>Independent fashion label.</p>
-            <p>Jakarta, Indonesia.</p>
+            <p>Melbourne, Australia.</p>
             <p>Est. 2021.</p>
           </div>
           <p className="mt-4 font-mono" style={{ fontSize: 9, color: "#555555" }}>

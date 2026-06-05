@@ -9,11 +9,11 @@ import PageTransition from "@/components/layout/PageTransition";
 export const metadata: Metadata = {
   title: "BRUTAL COUTURE — Wear Your Rage",
   description:
-    "Neo-brutalist fashion out of Indonesia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
+    "Neo-brutalist fashion out of Australia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
   openGraph: {
     title: "BRUTAL COUTURE — Wear Your Rage",
     description:
-      "Neo-brutalist fashion out of Indonesia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
+      "Neo-brutalist fashion out of Australia. Hard edges, electric yellow, zero apologies. SS25 — wear your rage.",
     type: "website",
   },
 };

@@ -131,6 +131,19 @@ function Placeholder({
         </div>
       )}
 
+      {variant === "purple" && (
+        <div className="absolute inset-0" style={{ backgroundColor: "#8A2BE2" }}>
+          <div
+            className="absolute"
+            style={{
+              inset: "15%",
+              border: `3px solid ${INK}`,
+              transform: "rotate(4deg)",
+            }}
+          />
+        </div>
+      )}
+
       {label && (
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <span

@@ -247,7 +247,7 @@ export default function CartDrawer() {
               CHECKOUT →
             </button>
             <p className="mt-3 text-center font-mono" style={{ fontSize: 9, color: MUTED }}>
-              SECURE CHECKOUT · IDR 500K = FREE SHIP
+              SECURE CHECKOUT · $500 AUD = FREE SHIP
             </p>
           </div>
         )}

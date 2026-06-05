@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FEATURED_PRODUCT } from "@/lib/data";
@@ -38,7 +39,16 @@ export default function FeaturedProduct() {
 
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomOrigin, setZoomOrigin] = useState("50% 50%");
   const { addItem, openCart } = useCart();
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomOrigin(`${x}% ${y}%`);
+  };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -96,20 +106,31 @@ export default function FeaturedProduct() {
         </span>
 
         <div
-          className="relative z-10"
+          className="relative z-10 w-[80%] max-w-[360px] md:max-w-none md:w-[65%] lg:w-[60%] xl:w-[55%] 2xl:max-w-[700px] overflow-hidden cursor-crosshair"
           style={{
-            width: "clamp(280px, 30vw, 360px)",
             border: `3px solid ${ACID}`,
             boxShadow: `12px 12px 0 0 ${ACID}`,
           }}
+          onMouseEnter={() => setIsZoomed(true)}
+          onMouseLeave={() => { setIsZoomed(false); setZoomOrigin("50% 50%"); }}
+          onMouseMove={handleMouseMove}
         >
-          <BrutalImage
-            src={FEATURED_PRODUCT.imageSrc}
-            alt={FEATURED_PRODUCT.name}
-            variant="pattern"
-            aspectRatio="4/5"
-            label={FEATURED_PRODUCT.ref}
-          />
+          <div
+            className="w-full h-full transition-transform duration-300 ease-out"
+            style={{
+              transformOrigin: zoomOrigin,
+              transform: isZoomed ? "scale(2.2)" : "scale(1)",
+            }}
+          >
+            <BrutalImage
+              src={FEATURED_PRODUCT.imageSrc}
+              alt={FEATURED_PRODUCT.name}
+              variant="pattern"
+              aspectRatio="4/5"
+              label={FEATURED_PRODUCT.ref}
+              className="w-full h-full"
+            />
+          </div>
         </div>
       </div>
 
@@ -216,6 +237,14 @@ export default function FeaturedProduct() {
                 : "ADD TO BAG →"}
           </button>
         </div>
+
+        <Link
+          href="/products/signal-oversized-tee"
+          data-cursor-hover
+          className="mt-5 inline-block w-fit font-mono text-[10px] uppercase tracking-widest text-acid underline underline-offset-4 transition-colors duration-200 hover:text-chalk"
+        >
+          VIEW DETAILS →
+        </Link>
       </div>
     </section>
   );

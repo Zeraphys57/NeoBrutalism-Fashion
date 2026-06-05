@@ -23,6 +23,12 @@ export function useCursor() {
     const textEl = textRef.current;
     if (!cursor) return;
 
+    // Only run on real pointer devices. Touch / coarse-pointer devices have no
+    // use for the square cursor — skip the rAF loop and listeners entirely.
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      return;
+    }
+
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const pos = { x: mouse.x, y: mouse.y };
 

@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { COLLECTIONS } from "@/lib/data";
+import { COLLECTIONS, getCollectionLeadProduct } from "@/lib/data";
 import type { Collection, ColorScheme } from "@/types";
 import HoverReveal from "@/components/ui/HoverReveal";
 import { useTextReveal } from "@/hooks/useTextReveal";
@@ -28,6 +29,7 @@ const SCHEMES: Record<ColorScheme, Scheme> = {
   dark: { bg: INK, text: CHALK, accent: ACID, shadow: ACID, tagBg: ACID, tagText: INK, patternOpacity: 6 },
   yellow: { bg: ACID, text: INK, accent: INK, shadow: INK, tagBg: INK, tagText: ACID, patternOpacity: 4 },
   light: { bg: CHALK, text: INK, accent: INK, shadow: ACID, tagBg: INK, tagText: ACID, patternOpacity: 4 },
+  purple: { bg: "#8A2BE2", text: CHALK, accent: ACID, shadow: INK, tagBg: ACID, tagText: INK, patternOpacity: 5 },
 };
 
 function patternBackground(color: string, opacityPct: number): string {
@@ -66,7 +68,7 @@ function CollectionCard({
       <div
         className="relative flex shrink-0 items-center justify-center overflow-hidden border-b-[3px] border-ink"
         style={{
-          height: "clamp(480px, 38vw, 520px)",
+          height: "clamp(360px, 40vw, 520px)",
           backgroundImage: patternBackground(scheme.text, scheme.patternOpacity),
         }}
       >
@@ -116,14 +118,13 @@ function CollectionCard({
         </div>
         <div className="flex shrink-0 flex-col items-end">
           <div className="font-display text-3xl leading-none">{collection.price}</div>
-          <a
-            href="#"
-            data-cursor-hover
+          {/* The whole card is a link now, so this is just a visual affordance. */}
+          <span
             className="mt-3 whitespace-nowrap font-mono text-[11px] uppercase tracking-widest underline underline-offset-4"
             style={{ color: scheme.accent }}
           >
             VIEW ALL →
-          </a>
+          </span>
         </div>
       </div>
     </div>
@@ -255,7 +256,7 @@ export default function Collections() {
               className="font-mono text-xs uppercase tracking-[0.25em]"
               style={{ color: "var(--muted)" }}
             >
-              SS25 — SEASON DROP
+              SEASON 4 — SILENT DYSTOPIA
             </p>
             <h2
               ref={titleRef}
@@ -295,17 +296,23 @@ export default function Collections() {
         onScroll={updateProgress}
         onClickCapture={onClickCapture}
       >
-        {COLLECTIONS.map((collection, index) => (
-          <HoverReveal
-            key={collection.id}
-            imageVariant={collection.colorScheme}
-            imageSrc={collection.imageSrc}
-            imageLabel={collection.name}
-            className="collection-card-wrap w-[clamp(300px,40vw,420px)] shrink-0 snap-start"
-          >
-            <CollectionCard collection={collection} index={index} />
-          </HoverReveal>
-        ))}
+        {COLLECTIONS.map((collection, index) => {
+          const lead = getCollectionLeadProduct(collection.slug);
+          const href = lead ? `/products/${lead.slug}` : "/";
+          return (
+            <HoverReveal
+              key={collection.id}
+              imageVariant={collection.colorScheme}
+              imageSrc={collection.imageSrc}
+              imageLabel={collection.name}
+              className="collection-card-wrap w-[clamp(300px,40vw,420px)] shrink-0 snap-start"
+            >
+              <Link href={href} className="block h-full">
+                <CollectionCard collection={collection} index={index} />
+              </Link>
+            </HoverReveal>
+          );
+        })}
       </div>
 
       {/* Progress bar */}

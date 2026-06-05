@@ -105,8 +105,9 @@ export default function WornBy() {
 
   return (
     <section id="worn-by" ref={sectionRef} className="bg-chalk px-6 py-24 md:px-16">
-      {/* Header */}
-      <div className="flex items-end justify-between border-b-[3px] border-ink pb-6">
+      {/* Header — stacks on mobile so the title and the wearer count never
+          collide in the narrow space. */}
+      <div className="flex flex-col gap-2 border-b-[3px] border-ink pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
         <h2
           className="font-display leading-[0.9] text-ink"
           style={{ fontSize: "clamp(52px, 8vw, 108px)" }}
@@ -121,8 +122,8 @@ export default function WornBy() {
         </span>
       </div>
 
-      {/* 3 × 3 community grid */}
-      <div className="mt-10 grid grid-cols-3 gap-4">
+      {/* Community grid — 2-up on phones for legible handles, 3 × 3 from sm up. */}
+      <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
         {WORN_BY_ITEMS.map((item) => (
           <WornCard key={item.id} item={item} />
         ))}

@@ -32,14 +32,26 @@ html {
   /* Firefox scrollbar */
   scrollbar-width: thin;
   scrollbar-color: var(--ink) var(--chalk);
+  /* Stop mobile browsers from inflating font sizes on orientation change. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   background-color: var(--chalk);
   color: var(--ink);
   font-family: "Space Mono", ui-monospace, SFMono-Regular, monospace;
-  cursor: none; /* replaced by the custom .cursor element in Phase 3 */
   overflow-x: hidden;
+  /* Kill the grey tap-flash on touch — we ship our own active states. */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hide the OS cursor only where the custom square cursor actually runs, i.e.
+   real pointer devices. Touch / coarse-pointer devices keep native behaviour. */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none; /* replaced by the custom .cursor element in Phase 3 */
+  }
 }
 
 ::selection {
@@ -227,6 +239,15 @@ body {
   transform: scale(0.8);
 }
 
+/* The custom cursor is meaningless on touch / coarse-pointer devices — hide it
+   so a stray square never lingers on screen. The hook also skips its rAF loop. */
+@media (hover: none), (pointer: coarse) {
+  .cursor,
+  .cursor-text {
+    display: none;
+  }
+}
+
 /* Cursor text label — trails the cursor, shown on [data-cursor-text] hover.
    Acid pill keeps the ink text legible over both dark and light sections. */
 .cursor-text {
@@ -285,4 +306,36 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--acid);
+}
+
+/* ------------------------------- Mobile inputs ---------------------------- */
+/* iOS Safari auto-zooms when a focused field's text is under 16px. Bump form
+   controls to 16px on small screens to keep the layout from jumping. */
+@media (max-width: 640px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* ----------------------------- Reduced motion ----------------------------- */
+/* Honour the OS setting: stop the perpetual CSS loops (marquee, glitch,
+   flicker) and collapse transition/animation durations. Helps battery on
+   low-power phones too. GSAP entrances still play but are short. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-reverse,
+  .glitch-layer,
+  .flicker {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

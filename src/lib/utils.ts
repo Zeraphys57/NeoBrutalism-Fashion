@@ -9,12 +9,12 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 /**
- * Format a number as Indonesian Rupiah (e.g. 580000 -> "Rp 580.000").
+ * Format a number as Australian Dollar (e.g. 580000 -> "$580.00").
  */
 export function formatPrice(value: number): string {
-  return new Intl.NumberFormat("id-ID", {
+  return new Intl.NumberFormat("en-AU", {
     style: "currency",
-    currency: "IDR",
+    currency: "AUD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
