@@ -45,7 +45,7 @@ export default function OpengraphImage() {
               letterSpacing: 6,
             }}
           >
-            SS25 — SILENT DYSTOPIA
+            SS25 / SILENT DYSTOPIA
           </div>
           <div style={{ display: "flex", width: 64, height: 64, backgroundColor: ACID }} />
         </div>
@@ -89,7 +89,7 @@ export default function OpengraphImage() {
               padding: "14px 24px",
             }}
           >
-            WEAR YOUR RAGE →
+            WEAR YOUR RAGE
           </div>
         </div>
       </div>
