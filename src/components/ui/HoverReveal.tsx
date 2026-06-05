@@ -52,7 +52,9 @@ export default function HoverReveal({
     if (!reveal) return;
     // Snap to the pointer instantly so it fades in where the cursor is.
     gsap.set(reveal, { x: e.clientX, y: e.clientY });
-    gsap.to(reveal, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" });
+    // overwrite kills any in-flight fade-out so a fast leave→enter doesn't leave
+    // the preview stuck half-faded.
+    gsap.to(reveal, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out", overwrite: "auto" });
   };
 
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -63,7 +65,15 @@ export default function HoverReveal({
   const onLeave = () => {
     const reveal = revealRef.current;
     if (!reveal) return;
-    gsap.to(reveal, { opacity: 0, scale: 0.85, duration: 0.3, ease: "power3.out" });
+    // Freeze the follow at its current position before fading. Otherwise the
+    // 0.5s position tween keeps gliding toward the last pointer location after
+    // the cursor has already left — so flicking out of the card fast makes the
+    // preview visibly "trail" away (usually downward) instead of fading in
+    // place. Re-targeting quickTo to the current x/y stops it without killing
+    // the reusable quickTo tweens.
+    xTo.current?.(gsap.getProperty(reveal, "x") as number);
+    yTo.current?.(gsap.getProperty(reveal, "y") as number);
+    gsap.to(reveal, { opacity: 0, scale: 0.85, duration: 0.3, ease: "power3.out", overwrite: "auto" });
   };
 
   return (
