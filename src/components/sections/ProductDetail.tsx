@@ -35,6 +35,16 @@ const SECONDARY_VARIANT: Record<ColorScheme, BrutalImageVariant> = {
   purple: "yellow", // acid contrasts hard against the purple primary
 };
 
+// Generic garment measurements (cm) for the size-guide disclosure.
+const SIZE_CHART = [
+  { size: "XS", chest: "86–91", length: 66 },
+  { size: "S", chest: "91–96", length: 68 },
+  { size: "M", chest: "96–101", length: 70 },
+  { size: "L", chest: "101–106", length: 72 },
+  { size: "XL", chest: "106–112", length: 74 },
+  { size: "XXL", chest: "112–118", length: 76 },
+];
+
 const TRUST = [
   { icon: "📦", text: "FREE SHIPPING for orders over $500 AUD" },
   { icon: "↩", text: "RETURN 7 hari — no questions asked" },
@@ -50,6 +60,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   const [justAdded, setJustAdded] = useState(false);
   const [wished, setWished] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
 
   const addedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -293,13 +304,15 @@ export default function ProductDetail({ product }: { product: Product }) {
               >
                 SELECT SIZE{selectedSize ? ` — ${selectedSize}` : ""}
               </div>
-              <a
-                href="#"
+              <button
+                type="button"
                 data-cursor-hover
+                aria-expanded={sizeGuideOpen}
+                onClick={() => setSizeGuideOpen((v) => !v)}
                 className="font-mono text-[9px] uppercase tracking-widest text-ink underline underline-offset-4"
               >
-                SIZE GUIDE →
-              </a>
+                SIZE GUIDE {sizeGuideOpen ? "↑" : "→"}
+              </button>
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {product.sizes.map((size) => {
@@ -327,6 +340,33 @@ export default function ProductDetail({ product }: { product: Product }) {
                 );
               })}
             </div>
+
+            {sizeGuideOpen && (
+              <div className="mt-4 b-border" style={{ fontSize: 10, color: INK }}>
+                <table className="w-full border-collapse font-mono">
+                  <thead>
+                    <tr style={{ backgroundColor: INK, color: CHALK }}>
+                      <th className="px-3 py-2 text-left uppercase tracking-widest">Size</th>
+                      <th className="px-3 py-2 text-left uppercase tracking-widest">Chest (cm)</th>
+                      <th className="px-3 py-2 text-left uppercase tracking-widest">Length (cm)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {SIZE_CHART.map((row) => (
+                      <tr
+                        key={row.size}
+                        className="border-t-[2px]"
+                        style={{ borderColor: HAIRLINE }}
+                      >
+                        <td className="px-3 py-2 font-bold">{row.size}</td>
+                        <td className="px-3 py-2">{row.chest}</td>
+                        <td className="px-3 py-2">{row.length}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
 
           {/* f) Actions */}
