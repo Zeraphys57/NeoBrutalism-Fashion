@@ -8,6 +8,7 @@ import { COLLECTIONS, getCollectionLeadProduct } from "@/lib/data";
 import type { Collection, ColorScheme } from "@/types";
 import HoverReveal from "@/components/ui/HoverReveal";
 import { useTextReveal } from "@/hooks/useTextReveal";
+import { prefersReducedMotion } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -181,7 +182,7 @@ export default function Collections() {
       // Subtle vertical parallax on the whole scroller for depth as the page
       // scrolls. Safe because the HoverReveal preview is portaled to <body>,
       // so this transform never becomes its containing block.
-      if (scrollerRef.current) {
+      if (scrollerRef.current && !prefersReducedMotion()) {
         gsap.to(scrollerRef.current, {
           y: 30,
           ease: "none",

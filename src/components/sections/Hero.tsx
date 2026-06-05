@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HERO_STATS, HERO_IMAGE_SRC } from "@/lib/data";
-import { cn } from "@/lib/utils";
+import { cn, prefersReducedMotion } from "@/lib/utils";
 import BrutalImage from "@/components/ui/BrutalImage";
 import { smoothScrollTo } from "@/lib/scrollTo";
 
@@ -84,16 +84,20 @@ export default function Hero() {
       // at a different rate. These animate `y`, while the entrance tweens above
       // animate other transform sub-properties (or other elements), so the two
       // sets coexist without fighting over the same property.
-      const parallax = () => ({
-        trigger: rootRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-      });
-      gsap.to(".hero-text", { y: -80, ease: "none", scrollTrigger: parallax() });
-      gsap.to(".hero-geo", { y: -120, ease: "none", scrollTrigger: parallax() });
-      gsap.to(".hero-badge", { y: -60, ease: "none", scrollTrigger: parallax() });
-      gsap.to(".hero-image", { y: -100, ease: "none", scrollTrigger: parallax() });
+      // Skipped under prefers-reduced-motion: scrubbed parallax is continuous,
+      // scroll-coupled motion — exactly what those users opt out of.
+      if (!prefersReducedMotion()) {
+        const parallax = () => ({
+          trigger: rootRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        });
+        gsap.to(".hero-text", { y: -80, ease: "none", scrollTrigger: parallax() });
+        gsap.to(".hero-geo", { y: -120, ease: "none", scrollTrigger: parallax() });
+        gsap.to(".hero-badge", { y: -60, ease: "none", scrollTrigger: parallax() });
+        gsap.to(".hero-image", { y: -100, ease: "none", scrollTrigger: parallax() });
+      }
     },
     { scope: rootRef }
   );

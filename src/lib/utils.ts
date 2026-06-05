@@ -30,3 +30,14 @@ export function slugify(value: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+/**
+ * Whether the user has asked the OS to minimise non-essential motion. Use it to
+ * skip parallax / scrubbed scroll effects. Returns false during SSR.
+ */
+export function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
